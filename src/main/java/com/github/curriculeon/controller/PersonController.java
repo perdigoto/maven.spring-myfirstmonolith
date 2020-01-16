@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RequestMapping(value = "/person-controller")
@@ -30,21 +31,12 @@ public class PersonController {
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public ResponseEntity<Person> create(@RequestBody Person person) {
-        Person responseBody = service.create(person);
+    public ResponseEntity<Person> create(@RequestBody Person jsonString) {
+        Person responseBody = service.create(jsonString);
         ResponseEntity responseEntity = new ResponseEntity<>(responseBody, HttpStatus.OK);
         return responseEntity;
     }
 
-//    @RequestMapping(value = "/create", method = RequestMethod.POST,
-//            consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE,
-//            produces = {MediaType.APPLICATION_ATOM_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
-//    public @ResponseBody Representation authenticate(@PathVariable("person") Person person, MultiValueMap paramMap) throws Exception {
-//        if(paramMap == null && paramMap.get("password") == null) {
-//            throw new IllegalArgumentException("Password not provided");
-//        }
-//        return null;
-//    }
 
     @RequestMapping(value = "/read", method = RequestMethod.GET)
     public ResponseEntity<Person> read(@PathVariable Long id) {
