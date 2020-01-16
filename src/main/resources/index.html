@@ -28,14 +28,11 @@
     <input id="create-default-button" type="submit" value="create-leon"/>
 </form>
 
-
-First Name: <input id="fname"><br>
-Last Name: <input id="lname"><br>
 <form action="/person-controller/create" method="post">
+    First Name: <input id="fname"><br>
+    Last Name: <input id="lname"><br>
     <input id="create-button" type="submit" value="create"/>
 </form>
-
-
 
 <script>
 class Person {
@@ -54,7 +51,7 @@ console.log(jsonPerson);
 
 _postOnClick(
     "create-button",
-    "localhost:8091/person-controller/create",
+    "https://localhost:8091/person-controller/create",
     jsonPerson);
 
 
@@ -68,7 +65,7 @@ function _postOnClick(buttonId, endpoint, args){
             success : function(response) {
                     alert(JSON.stringify(response));
                     },
-                    error: function(){                      
+            error: function(){
                         alert('Error while request..');
                     }
         });

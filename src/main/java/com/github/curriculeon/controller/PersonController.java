@@ -2,9 +2,12 @@ package com.github.curriculeon.controller;
 
 import com.github.curriculeon.model.Person;
 import com.github.curriculeon.service.PersonService;
+import org.assertj.core.presentation.Representation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,7 +29,6 @@ public class PersonController {
         return responseEntity;
     }
 
-
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public ResponseEntity<Person> create(@RequestParam Person person) {
         Person responseBody = service.create(person);
@@ -34,6 +36,15 @@ public class PersonController {
         return responseEntity;
     }
 
+//    @RequestMapping(value = "/create", method = RequestMethod.POST,
+//            consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE,
+//            produces = {MediaType.APPLICATION_ATOM_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
+//    public @ResponseBody Representation authenticate(@PathVariable("person") Person person, MultiValueMap paramMap) throws Exception {
+//        if(paramMap == null && paramMap.get("password") == null) {
+//            throw new IllegalArgumentException("Password not provided");
+//        }
+//        return null;
+//    }
 
     @RequestMapping(value = "/read", method = RequestMethod.GET)
     public ResponseEntity<Person> read(@PathVariable Long id) {
